@@ -108,7 +108,7 @@ if(isset($_SESSION['admin_id'])){
                                                 <td>" . $user['username'] ."</td>
                                                 <td>" . $user['email'] ."</td>
                                                 <td>
-                                                <a href='?page=deleteUser&id=".$user['user_id']."' style='text-decoration: none; color:red;' >
+                                                <a href='?id=".$user['user_id']."' style='text-decoration: none; color:red;' >
                                                     <i class='fa-solid fa-trash-can me-3'></i>
                                                 </a>
                                                 <a href='?page=editUser&userid=".$user['user_id']."' style='text-decoration: none; color:#0dcaf0;' >
@@ -144,7 +144,7 @@ if(isset($_SESSION['admin_id'])){
             <input type="hidden" name="user_id" value="<?PHP echo $userData['user_id']; ?>"/>
             <div class="form-outline mb-4">
               <label class="form-label" for="form2Example11">Username</label>
-              <input type="text" name="username" value="<?PHP echo $userData['username']; ?>" class="form-control" placeholder="email address"/>
+              <input type="text" name="username" value="<?PHP echo $userData['username']; ?>" class="form-control" placeholder="username"/>
             </div>
 
             <div class="form-outline mb-4">
