@@ -13,7 +13,7 @@ if(isset($_SESSION['admin_id'])){
     $allUsers =$qusers->fetchAll();
 
     // statement to return all posts
-    $qposts = $connect->prepare("SELECT * FROM posts");
+    $qposts = $connect->prepare("SELECT posts.* , users.* FROM posts INNER JOIN users ON posts.user_id = users.user_id ");
     $qposts->execute();
     $numPosts =$qposts->rowCount();
     $allPosts =$qposts->fetchAll();
@@ -48,12 +48,15 @@ if(isset($_SESSION['admin_id'])){
         <div class="row">
             <div class="col-md-6">
                 <div class="card mt-5">
-                    <h5 class="card-header">
-                        Users
-                        <span class="badge bg-primary">
-                            <?PHP echo $numUsers ?>
-                        </span>
-                    </h5>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-header">
+                            Users
+                            <span class="badge bg-primary">
+                                <?PHP echo $numUsers ?>
+                            </span>
+                        </h5>
+                        <a href="users.php" class="btn btn-primary">Users</a>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -107,12 +110,15 @@ if(isset($_SESSION['admin_id'])){
             </div>
             <div class="col-md-6">
                 <div class="card mt-5">
-                    <h5 class="card-header">
-                        Posts 
-                        <span class="badge bg-primary">
-                           <?PHP echo $numPosts ?>
-                        </span>
-                    </h5>
+                   <div class="card-header d-flex justify-content-between align-items-center">
+                       <h5 class="card-header">
+                            Posts 
+                            <span class="badge bg-primary">
+                               <?PHP echo $numPosts ?>
+                            </span>
+                        </h5>
+                        <a href="posts.php" class="btn btn-primary">Posts</a>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -138,7 +144,7 @@ if(isset($_SESSION['admin_id'])){
                                             <th scope='row'>" . $post['post_id'] ."</th>
                                             <td>" . $post['title'] ."</td>
                                             <td>" . $post['body'] ."</td>
-                                            <td>" . $post['user_id'] ."</td>
+                                            <td>" . $post['username'] ."</td>
                                             <td>
                                                 <a href='#' style='text-decoration: none; color:red;' >
                                                     <i class='fa-solid fa-trash-can me-3'></i>
